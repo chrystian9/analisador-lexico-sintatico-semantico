@@ -1,0 +1,56 @@
+2022-05-01 16:40:15:096 grammar LogManager.java:25 before: (COMBINED_GRAMMAR Alguma (@ header {
+    package antlr4;
+}) (RULES (RULE inicio (BLOCK (ALT (? (BLOCK (ALT declaracao))) programa EOF))) (RULE declaracao (BLOCK (ALT DECLARACAO (* (BLOCK (ALT decl)))))) (RULE decl (BLOCK (ALT TIPO ID (? (BLOCK (ALT '=' NUM) (ALT BOOL) (ALT STRING)))))) (RULE programa (BLOCK (ALT ALGORITMO (* (BLOCK (ALT instr)))))) (RULE instr (BLOCK (ALT atribuir))) (RULE atribuir (BLOCK (ALT ATRIBUIR atribuido A ID))) (RULE atribuido (BLOCK (ALT (BLOCK (ALT ID) (ALT NUM) (ALT BOOL) (ALT STRING) (ALT operacao))))) (RULE operacao (BLOCK (ALT operando OPERADOR (BLOCK (ALT operando) (ALT operacao))))) (RULE operando (BLOCK (ALT ID) (ALT NUM) (ALT BOOL) (ALT STRING))) (RULE TIPO (BLOCK (ALT (BLOCK (ALT 'int') (ALT 'float') (ALT 'Bool') (ALT 'string'))))) (RULE ID (BLOCK (ALT [a-z] (+ (BLOCK (ALT [a-z]) (ALT [A-Z]) (ALT [0-9])))))) (RULE STRING (BLOCK (ALT '"' (* (BLOCK (ALT .))) '"'))) (RULE WS (BLOCK (LEXER_ALT_ACTION (ALT (* (BLOCK (ALT [ \r\t\n])))) skip))) (RULE NUM (BLOCK (ALT (+ (BLOCK (ALT [0-9]))) (? (BLOCK (ALT ',' (+ (BLOCK (ALT [0-9]))))))))) (RULE BOOL (BLOCK (ALT 'False') (ALT 'True'))) (RULE OPERADOR (BLOCK (ALT '+') (ALT '-') (ALT '*') (ALT '/') (ALT '>') (ALT '<') (ALT '>=') (ALT '<=') (ALT '=='))) (RULE DECLARACAO (BLOCK (ALT ':DECLARACAO'))) (RULE ALGORITMO (BLOCK (ALT ':ALGORITMO'))) (RULE ATRIBUIR (BLOCK (ALT 'ATRIBUIR'))) (RULE A (BLOCK (ALT 'A')))))
+2022-05-01 16:40:15:117 grammar LogManager.java:25 after: (COMBINED_GRAMMAR Alguma (@ header {
+    package antlr4;
+}) (RULES (RULE inicio (BLOCK (ALT (? (BLOCK (ALT declaracao))) programa EOF))) (RULE declaracao (BLOCK (ALT DECLARACAO (* (BLOCK (ALT decl)))))) (RULE decl (BLOCK (ALT TIPO ID (? (BLOCK (ALT '=' NUM) (ALT BOOL) (ALT STRING)))))) (RULE programa (BLOCK (ALT ALGORITMO (* (BLOCK (ALT instr)))))) (RULE instr (BLOCK (ALT atribuir))) (RULE atribuir (BLOCK (ALT ATRIBUIR atribuido A ID))) (RULE atribuido (BLOCK (ALT (BLOCK (ALT ID) (ALT NUM) (ALT BOOL) (ALT STRING) (ALT operacao))))) (RULE operacao (BLOCK (ALT operando OPERADOR (BLOCK (ALT operando) (ALT operacao))))) (RULE operando (BLOCK (ALT (SET ID NUM BOOL STRING)))) (RULE TIPO (BLOCK (ALT (BLOCK (ALT 'int') (ALT 'float') (ALT 'Bool') (ALT 'string'))))) (RULE ID (BLOCK (ALT [a-z] (+ (BLOCK (ALT [a-z]) (ALT [A-Z]) (ALT [0-9])))))) (RULE STRING (BLOCK (ALT '"' (* (BLOCK (ALT .))) '"'))) (RULE WS (BLOCK (LEXER_ALT_ACTION (ALT (* (BLOCK (ALT [ \r\t\n])))) skip))) (RULE NUM (BLOCK (ALT (+ (BLOCK (ALT [0-9]))) (? (BLOCK (ALT ',' (+ (BLOCK (ALT [0-9]))))))))) (RULE BOOL (BLOCK (ALT 'False') (ALT 'True'))) (RULE OPERADOR (BLOCK (ALT '+') (ALT '-') (ALT '*') (ALT '/') (ALT '>') (ALT '<') (ALT '>=') (ALT '<=') (ALT '=='))) (RULE DECLARACAO (BLOCK (ALT ':DECLARACAO'))) (RULE ALGORITMO (BLOCK (ALT ':ALGORITMO'))) (RULE ATRIBUIR (BLOCK (ALT 'ATRIBUIR'))) (RULE A (BLOCK (ALT 'A')))))
+2022-05-01 16:40:15:127 grammar LogManager.java:25 after extract implicit lexer =(COMBINED_GRAMMAR Alguma (@ header {
+    package antlr4;
+}) (RULES (RULE inicio (BLOCK (ALT (? (BLOCK (ALT declaracao))) programa EOF))) (RULE declaracao (BLOCK (ALT DECLARACAO (* (BLOCK (ALT decl)))))) (RULE decl (BLOCK (ALT TIPO ID (? (BLOCK (ALT '=' NUM) (ALT BOOL) (ALT STRING)))))) (RULE programa (BLOCK (ALT ALGORITMO (* (BLOCK (ALT instr)))))) (RULE instr (BLOCK (ALT atribuir))) (RULE atribuir (BLOCK (ALT ATRIBUIR atribuido A ID))) (RULE atribuido (BLOCK (ALT (BLOCK (ALT ID) (ALT NUM) (ALT BOOL) (ALT STRING) (ALT operacao))))) (RULE operacao (BLOCK (ALT operando OPERADOR (BLOCK (ALT operando) (ALT operacao))))) (RULE operando (BLOCK (ALT (SET ID NUM BOOL STRING))))))
+2022-05-01 16:40:15:127 grammar LogManager.java:25 lexer =(LEXER_GRAMMAR AlgumaLexer (@ header {
+    package antlr4;
+}) (RULES (RULE T__0 (BLOCK (ALT '='))) (RULE TIPO (BLOCK (ALT (BLOCK (ALT 'int') (ALT 'float') (ALT 'Bool') (ALT 'string'))))) (RULE ID (BLOCK (ALT [a-z] (+ (BLOCK (ALT [a-z]) (ALT [A-Z]) (ALT [0-9])))))) (RULE STRING (BLOCK (ALT '"' (* (BLOCK (ALT .))) '"'))) (RULE WS (BLOCK (LEXER_ALT_ACTION (ALT (* (BLOCK (ALT [ \r\t\n])))) skip))) (RULE NUM (BLOCK (ALT (+ (BLOCK (ALT [0-9]))) (? (BLOCK (ALT ',' (+ (BLOCK (ALT [0-9]))))))))) (RULE BOOL (BLOCK (ALT 'False') (ALT 'True'))) (RULE OPERADOR (BLOCK (ALT '+') (ALT '-') (ALT '*') (ALT '/') (ALT '>') (ALT '<') (ALT '>=') (ALT '<=') (ALT '=='))) (RULE DECLARACAO (BLOCK (ALT ':DECLARACAO'))) (RULE ALGORITMO (BLOCK (ALT ':ALGORITMO'))) (RULE ATRIBUIR (BLOCK (ALT 'ATRIBUIR'))) (RULE A (BLOCK (ALT 'A')))))
+2022-05-01 16:40:15:290 action-translator LogManager.java:25 translate 
+    package antlr4;
+
+2022-05-01 16:40:15:359 semantics LogManager.java:25 tokens={EOF=-1, T__0=1, TIPO=2, ID=3, STRING=4, WS=5, NUM=6, BOOL=7, OPERADOR=8, DECLARACAO=9, ALGORITMO=10, ATRIBUIR=11, A=12}
+2022-05-01 16:40:15:359 semantics LogManager.java:25 strings={'='=1, ':DECLARACAO'=9, ':ALGORITMO'=10, 'ATRIBUIR'=11, 'A'=12}
+2022-05-01 16:40:15:373 LL1 LogManager.java:25 
+DECISION 0 in rule inicio
+2022-05-01 16:40:15:373 LL1 LogManager.java:25 look=[9, 10]
+2022-05-01 16:40:15:373 LL1 LogManager.java:25 LL(1)? true
+2022-05-01 16:40:15:373 LL1 LogManager.java:25 
+DECISION 1 in rule declaracao
+2022-05-01 16:40:15:373 LL1 LogManager.java:25 look=[2, 10]
+2022-05-01 16:40:15:373 LL1 LogManager.java:25 LL(1)? true
+2022-05-01 16:40:15:373 LL1 LogManager.java:25 
+DECISION 2 in rule decl
+2022-05-01 16:40:15:373 LL1 LogManager.java:25 look=[1, 7, 4, {2, 10}]
+2022-05-01 16:40:15:373 LL1 LogManager.java:25 LL(1)? true
+2022-05-01 16:40:15:373 LL1 LogManager.java:25 
+DECISION 3 in rule programa
+2022-05-01 16:40:15:373 LL1 LogManager.java:25 look=[11, <EOF>]
+2022-05-01 16:40:15:373 LL1 LogManager.java:25 LL(1)? true
+2022-05-01 16:40:15:373 LL1 LogManager.java:25 
+DECISION 4 in rule atribuido
+2022-05-01 16:40:15:373 LL1 LogManager.java:25 look=[3, 6, 7, 4, {3..4, 6..7}]
+2022-05-01 16:40:15:373 LL1 LogManager.java:25 LL(1)? false
+2022-05-01 16:40:15:373 LL1 LogManager.java:25 
+DECISION 5 in rule operacao
+2022-05-01 16:40:15:373 LL1 LogManager.java:25 look=[{3..4, 6..7}, {3..4, 6..7}]
+2022-05-01 16:40:15:373 LL1 LogManager.java:25 LL(1)? false
+2022-05-01 16:40:15:373 action-translator LogManager.java:25 translate 
+    package antlr4;
+
+2022-05-01 16:40:15:426 action-translator LogManager.java:25 translate 
+    package antlr4;
+
+2022-05-01 16:40:15:426 action-translator LogManager.java:25 translate 
+    package antlr4;
+
+2022-05-01 16:40:15:430 action-translator LogManager.java:25 translate 
+    package antlr4;
+
+2022-05-01 16:40:15:430 action-translator LogManager.java:25 translate 
+    package antlr4;
+
