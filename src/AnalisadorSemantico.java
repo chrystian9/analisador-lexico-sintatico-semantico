@@ -11,7 +11,7 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 public class AnalisadorSemantico {
     public static void main(String[] args) {
         //parsing the input
-        AlgumaParser parser = getParser("C:\\Users\\chrystian.amaral\\Documents\\Pessoal\\UFLA\\Compiladores\\REO 5\\analisador-lexico-sintatico-semantico\\src\\teste\\codigo.txt");
+        AlgumaParser parser = getParser("src/teste/codigo.txt");
 
         //obter arvore
         ParseTree ast = parser.inicio();
