@@ -26,8 +26,14 @@ public class AnalisadorSemantico {
         //percorre a ast com a nossa implementacao no listener
         walker.walk(listener, ast);
 
-        //imprime a tabela de simbolos
-        System.out.println(listener.getTabelaSimbolos().toString());
+        if(listener.getErrosSemanticos().size() > 0){
+            System.out.println("Erros semânticos [" + listener.getErrosSemanticos().size() + "]:");
+            for (String erro: listener.getErrosSemanticos()) {
+                System.out.println(erro);
+            }
+        }else{
+            System.out.println("Não há erros semânticos");
+        }
     }
 
     private static AlgumaParser getParser(String fileName){
