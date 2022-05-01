@@ -46,17 +46,17 @@ public interface AlgumaListener extends ParseTreeListener {
 	 */
 	void exitNDeclaracao(AlgumaParser.NDeclaracaoContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code BlocoPrograma}
+	 * Enter a parse tree produced by the {@code BlocoAlgoritmo}
 	 * labeled alternative in {@link AlgumaParser#programa}.
 	 * @param ctx the parse tree
 	 */
-	void enterBlocoPrograma(AlgumaParser.BlocoProgramaContext ctx);
+	void enterBlocoAlgoritmo(AlgumaParser.BlocoAlgoritmoContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code BlocoPrograma}
+	 * Exit a parse tree produced by the {@code BlocoAlgoritmo}
 	 * labeled alternative in {@link AlgumaParser#programa}.
 	 * @param ctx the parse tree
 	 */
-	void exitBlocoPrograma(AlgumaParser.BlocoProgramaContext ctx);
+	void exitBlocoAlgoritmo(AlgumaParser.BlocoAlgoritmoContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code NAtribuicao}
 	 * labeled alternative in {@link AlgumaParser#instr}.

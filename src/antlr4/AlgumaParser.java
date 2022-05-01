@@ -19,7 +19,8 @@ public class AlgumaParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, T__3=4, TIPO=5, ID=6, WS=7, NUM=8, OPERADOR=9;
+		T__0=1, T__1=2, T__2=3, T__3=4, TIPO=5, ID=6, STRING=7, WS=8, NUM=9, BOOL=10, 
+		OPERADOR=11, ATRIBUIR=12;
 	public static final int
 		RULE_inicio = 0, RULE_declaracao = 1, RULE_decl = 2, RULE_programa = 3, 
 		RULE_instr = 4, RULE_operacao = 5, RULE_operando = 6;
@@ -32,13 +33,14 @@ public class AlgumaParser extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "':declaracao'", "'='", "';'", "'programa'"
+			null, "':DECLARACAO'", "'='", "':ALGORITMO'", "'A'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, null, null, null, null, "TIPO", "ID", "WS", "NUM", "OPERADOR"
+			null, null, null, null, null, "TIPO", "ID", "STRING", "WS", "NUM", "BOOL", 
+			"OPERADOR", "ATRIBUIR"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -238,6 +240,8 @@ public class AlgumaParser extends Parser {
 		public TerminalNode TIPO() { return getToken(AlgumaParser.TIPO, 0); }
 		public TerminalNode ID() { return getToken(AlgumaParser.ID, 0); }
 		public TerminalNode NUM() { return getToken(AlgumaParser.NUM, 0); }
+		public TerminalNode BOOL() { return getToken(AlgumaParser.BOOL, 0); }
+		public TerminalNode STRING() { return getToken(AlgumaParser.STRING, 0); }
 		public NDeclaracaoContext(DeclContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
@@ -252,7 +256,6 @@ public class AlgumaParser extends Parser {
 	public final DeclContext decl() throws RecognitionException {
 		DeclContext _localctx = new DeclContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_decl);
-		int _la;
 		try {
 			_localctx = new NDeclaracaoContext(_localctx);
 			enterOuterAlt(_localctx, 1);
@@ -261,20 +264,35 @@ public class AlgumaParser extends Parser {
 			match(TIPO);
 			setState(28);
 			match(ID);
-			setState(31);
+			setState(33);
 			_errHandler.sync(this);
-			_la = _input.LA(1);
-			if (_la==T__1) {
+			switch (_input.LA(1)) {
+			case T__1:
 				{
 				setState(29);
 				match(T__1);
 				setState(30);
 				match(NUM);
 				}
+				break;
+			case BOOL:
+				{
+				setState(31);
+				match(BOOL);
+				}
+				break;
+			case STRING:
+				{
+				setState(32);
+				match(STRING);
+				}
+				break;
+			case T__2:
+			case TIPO:
+				break;
+			default:
+				break;
 			}
-
-			setState(33);
-			match(T__2);
 			}
 		}
 		catch (RecognitionException re) {
@@ -299,21 +317,21 @@ public class AlgumaParser extends Parser {
 			super.copyFrom(ctx);
 		}
 	}
-	public static class BlocoProgramaContext extends ProgramaContext {
+	public static class BlocoAlgoritmoContext extends ProgramaContext {
 		public List<InstrContext> instr() {
 			return getRuleContexts(InstrContext.class);
 		}
 		public InstrContext instr(int i) {
 			return getRuleContext(InstrContext.class,i);
 		}
-		public BlocoProgramaContext(ProgramaContext ctx) { copyFrom(ctx); }
+		public BlocoAlgoritmoContext(ProgramaContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof AlgumaListener ) ((AlgumaListener)listener).enterBlocoPrograma(this);
+			if ( listener instanceof AlgumaListener ) ((AlgumaListener)listener).enterBlocoAlgoritmo(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof AlgumaListener ) ((AlgumaListener)listener).exitBlocoPrograma(this);
+			if ( listener instanceof AlgumaListener ) ((AlgumaListener)listener).exitBlocoAlgoritmo(this);
 		}
 	}
 
@@ -322,15 +340,15 @@ public class AlgumaParser extends Parser {
 		enterRule(_localctx, 6, RULE_programa);
 		int _la;
 		try {
-			_localctx = new BlocoProgramaContext(_localctx);
+			_localctx = new BlocoAlgoritmoContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(35);
-			match(T__3);
+			match(T__2);
 			setState(39);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==ID) {
+			while (_la==ATRIBUIR) {
 				{
 				{
 				setState(36);
@@ -366,11 +384,11 @@ public class AlgumaParser extends Parser {
 		}
 	}
 	public static class NAtribuicaoContext extends InstrContext {
-		public List<TerminalNode> ID() { return getTokens(AlgumaParser.ID); }
-		public TerminalNode ID(int i) {
-			return getToken(AlgumaParser.ID, i);
-		}
+		public TerminalNode ATRIBUIR() { return getToken(AlgumaParser.ATRIBUIR, 0); }
+		public TerminalNode ID() { return getToken(AlgumaParser.ID, 0); }
 		public TerminalNode NUM() { return getToken(AlgumaParser.NUM, 0); }
+		public TerminalNode BOOL() { return getToken(AlgumaParser.BOOL, 0); }
+		public TerminalNode STRING() { return getToken(AlgumaParser.STRING, 0); }
 		public OperacaoContext operacao() {
 			return getRuleContext(OperacaoContext.class,0);
 		}
@@ -393,10 +411,10 @@ public class AlgumaParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(42);
-			match(ID);
+			match(ATRIBUIR);
 			setState(43);
-			match(T__1);
-			setState(47);
+			match(T__3);
+			setState(49);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
 			case 1:
@@ -414,12 +432,22 @@ public class AlgumaParser extends Parser {
 			case 3:
 				{
 				setState(46);
+				match(BOOL);
+				}
+				break;
+			case 4:
+				{
+				setState(47);
+				match(STRING);
+				}
+				break;
+			case 5:
+				{
+				setState(48);
 				operacao();
 				}
 				break;
 			}
-			setState(49);
-			match(T__2);
 			}
 		}
 		catch (RecognitionException re) {
@@ -554,22 +582,23 @@ public class AlgumaParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\13>\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\16>\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\3\2\5\2\22\n\2\3\2\3\2\3\2"+
-		"\3\3\3\3\7\3\31\n\3\f\3\16\3\34\13\3\3\4\3\4\3\4\3\4\5\4\"\n\4\3\4\3\4"+
-		"\3\5\3\5\7\5(\n\5\f\5\16\5+\13\5\3\6\3\6\3\6\3\6\3\6\5\6\62\n\6\3\6\3"+
+		"\3\3\3\3\7\3\31\n\3\f\3\16\3\34\13\3\3\4\3\4\3\4\3\4\3\4\3\4\5\4$\n\4"+
+		"\3\5\3\5\7\5(\n\5\f\5\16\5+\13\5\3\6\3\6\3\6\3\6\3\6\3\6\3\6\5\6\64\n"+
 		"\6\3\7\3\7\3\7\3\7\5\7:\n\7\3\b\3\b\3\b\2\2\t\2\4\6\b\n\f\16\2\3\4\2\b"+
-		"\b\n\n\2=\2\21\3\2\2\2\4\26\3\2\2\2\6\35\3\2\2\2\b%\3\2\2\2\n,\3\2\2\2"+
-		"\f\65\3\2\2\2\16;\3\2\2\2\20\22\5\4\3\2\21\20\3\2\2\2\21\22\3\2\2\2\22"+
-		"\23\3\2\2\2\23\24\5\b\5\2\24\25\7\2\2\3\25\3\3\2\2\2\26\32\7\3\2\2\27"+
-		"\31\5\6\4\2\30\27\3\2\2\2\31\34\3\2\2\2\32\30\3\2\2\2\32\33\3\2\2\2\33"+
-		"\5\3\2\2\2\34\32\3\2\2\2\35\36\7\7\2\2\36!\7\b\2\2\37 \7\4\2\2 \"\7\n"+
-		"\2\2!\37\3\2\2\2!\"\3\2\2\2\"#\3\2\2\2#$\7\5\2\2$\7\3\2\2\2%)\7\6\2\2"+
-		"&(\5\n\6\2\'&\3\2\2\2(+\3\2\2\2)\'\3\2\2\2)*\3\2\2\2*\t\3\2\2\2+)\3\2"+
-		"\2\2,-\7\b\2\2-\61\7\4\2\2.\62\7\b\2\2/\62\7\n\2\2\60\62\5\f\7\2\61.\3"+
-		"\2\2\2\61/\3\2\2\2\61\60\3\2\2\2\62\63\3\2\2\2\63\64\7\5\2\2\64\13\3\2"+
-		"\2\2\65\66\5\16\b\2\669\7\13\2\2\67:\5\16\b\28:\5\f\7\29\67\3\2\2\298"+
-		"\3\2\2\2:\r\3\2\2\2;<\t\2\2\2<\17\3\2\2\2\b\21\32!)\619";
+		"\b\13\13\2A\2\21\3\2\2\2\4\26\3\2\2\2\6\35\3\2\2\2\b%\3\2\2\2\n,\3\2\2"+
+		"\2\f\65\3\2\2\2\16;\3\2\2\2\20\22\5\4\3\2\21\20\3\2\2\2\21\22\3\2\2\2"+
+		"\22\23\3\2\2\2\23\24\5\b\5\2\24\25\7\2\2\3\25\3\3\2\2\2\26\32\7\3\2\2"+
+		"\27\31\5\6\4\2\30\27\3\2\2\2\31\34\3\2\2\2\32\30\3\2\2\2\32\33\3\2\2\2"+
+		"\33\5\3\2\2\2\34\32\3\2\2\2\35\36\7\7\2\2\36#\7\b\2\2\37 \7\4\2\2 $\7"+
+		"\13\2\2!$\7\f\2\2\"$\7\t\2\2#\37\3\2\2\2#!\3\2\2\2#\"\3\2\2\2#$\3\2\2"+
+		"\2$\7\3\2\2\2%)\7\5\2\2&(\5\n\6\2\'&\3\2\2\2(+\3\2\2\2)\'\3\2\2\2)*\3"+
+		"\2\2\2*\t\3\2\2\2+)\3\2\2\2,-\7\16\2\2-\63\7\6\2\2.\64\7\b\2\2/\64\7\13"+
+		"\2\2\60\64\7\f\2\2\61\64\7\t\2\2\62\64\5\f\7\2\63.\3\2\2\2\63/\3\2\2\2"+
+		"\63\60\3\2\2\2\63\61\3\2\2\2\63\62\3\2\2\2\64\13\3\2\2\2\65\66\5\16\b"+
+		"\2\669\7\r\2\2\67:\5\16\b\28:\5\f\7\29\67\3\2\2\298\3\2\2\2:\r\3\2\2\2"+
+		";<\t\2\2\2<\17\3\2\2\2\b\21\32#)\639";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
