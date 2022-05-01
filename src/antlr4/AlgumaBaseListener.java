@@ -54,13 +54,25 @@ public class AlgumaBaseListener implements AlgumaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBlocoPrograma(AlgumaParser.BlocoProgramaContext ctx) { }
+	@Override public void enterBlocoAlgoritmo(AlgumaParser.BlocoAlgoritmoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBlocoPrograma(AlgumaParser.BlocoProgramaContext ctx) { }
+	@Override public void exitBlocoAlgoritmo(AlgumaParser.BlocoAlgoritmoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNInstrucao(AlgumaParser.NInstrucaoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNInstrucao(AlgumaParser.NInstrucaoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
