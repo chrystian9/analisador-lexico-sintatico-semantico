@@ -5,10 +5,7 @@ import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MyListener extends AlgumaBaseListener {
 
@@ -100,7 +97,6 @@ public class MyListener extends AlgumaBaseListener {
             tipo = tabelaSimbolos.get(ctx.ID().get(0).getText());
         }else {
             id = ctx.ID().get(0).getText();
-
             if (ctx.BOOL() != null) {
                 tipo = "Bool";
             } else if (ctx.NUM() != null) {
@@ -176,6 +172,42 @@ public class MyListener extends AlgumaBaseListener {
 
     @Override
     public void enterNOperacao(AlgumaParser.NOperacaoContext ctx) {
+        String operando = ctx.OPERADOR().getText();
+        String op = ctx.operando().get(0).getText();
+        String tipo = tabelaSimbolos.get(op);
+        String op2 = ctx.operando().get(1).getText();
+        String tipo2 = tabelaSimbolos.get(op2);
+        Boolean error = false;
+
+        if(Objects.equals(tipo, "string")){
+            if(Objects.equals(tipo2, "Bool")){
+                error = true;
+            }
+
+            else if(Objects.equals(tipo2, "int")){
+                error = true;
+            }
+
+            else if(Objects.equals(tipo2, "float")){
+                error = true;
+            }
+        }
+
+        else if(Objects.equals(tipo, "Bool") && Objects.equals(tipo2, "string")){
+            error = true;
+        }
+        else if(Objects.equals(tipo, "int") && Objects.equals(tipo2, "string")){
+            error = true;
+        }
+
+        else if(Objects.equals(tipo, "float") && Objects.equals(tipo2, "string")){
+            error = true;
+        }
+
+
+        if(error)
+            errosSemanticos.add("No match for operator " + operando +
+                    " (operand types are " + tipo + " and " + tipo2 + ")");
 
     }
 

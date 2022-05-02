@@ -19,7 +19,7 @@ STRING: '"' .*? '"';
 WS: [ \r\t\n]* -> skip;
 NUM: [0-9]+(','[0-9]+)?;
 BOOL: 'False'|'True';
-OPERADOR: '+'|'-'|'*'|'/'|'>'|'<'|'>='|'<='|'==';
+OPERADOR: '+'|'-'|'*'|'/'|'%'|'>'|'<'|'>='|'<='|'==';
 DECLARACAO: ':DECLARACAO';
 ALGORITMO: ':ALGORITMO';
 ATRIBUIR: 'ATRIBUIR';
