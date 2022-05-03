@@ -66,7 +66,8 @@ public class MyListener extends AlgumaBaseListener {
 
             if(tipoOperandor.matches("['>'|'<'|'>='|'<='|'==']")){
                 tipo = "Bool";
-            }else{
+            }
+            else{
                 String operando1 = ctx.operacao().getChild(0).getText();
                 String tipoOperacao = "int";
 
@@ -78,26 +79,29 @@ public class MyListener extends AlgumaBaseListener {
                     tipoOperacao = "float";
                 }
 
-                if(tipoOperacao != "float"){
-//                    ParseTree child = ctx.operacao().getChild(2);
-//                    boolean control = true;
-//                    while (control){
-//                        operando1 = child.getChild(0).getText();
-//                        if(tabelaSimbolos.containsKey(operando1)) {
-//                            if(tabelaSimbolos.get(operando1).equals("float")) {
-//                                tipoOperacao = "float";
-//                            }
-//                        }else if(!operando1.matches("[0-9]")){
-//                            tipoOperacao = "float";
-//                        }
-//
-//                        if(tipoOperacao == "float"){
-//                            control = false;
-//                        }
-//                    }
+                if(!tipoOperacao.equals("float")){
+ //                   ParseTree child = ctx.operacao().getChild(2);
+ //                   List<ParseTree> aux = ctx.operacao().children;
+
+ //                   System.out.println( ctx.operacao().getChild(2).toString());
+/*                   boolean control = true;
+                    while (control){
+                        operando1 = child.getChild(0).getText();
+                       if(tabelaSimbolos.containsKey(operando1)) {
+                           if(tabelaSimbolos.get(operando1).equals("float")) {
+                                tipoOperacao = "float";
+                            }
+                        }else if(!operando1.matches("[0-9]")){
+                           tipoOperacao = "float";
+                        }
+
+                       if(tipoOperacao == "float"){
+                            control = false;
+                        }
+                   }*/
                 }
 
-//                ctx.operacao().getChild(2).getChild();
+            //    ctx.operacao().getChild(2).getChild();
             }
 
             if (!tabelaSimbolos.get(id).equals(tipo)) {
@@ -117,43 +121,47 @@ public class MyListener extends AlgumaBaseListener {
 
     @Override
     public void enterNOperacao(AlgumaParser.NOperacaoContext ctx) {
+        System.out.println("Operacao! ");
         String operando = ctx.OPERADOR().getText();
         String op = ctx.operando().get(0).getText();
-        String tipo = tabelaSimbolos.get(op);
-        String op2 = ctx.operando().get(1).getText();
-        String tipo2 = tabelaSimbolos.get(op2);
-        Boolean error = false;
+        System.out.print(op + " ");
+        System.out.println(ctx.operando().size());
+        if(ctx.operando().size() == 2){
+            String op2 = ctx.operando().get(1).getText();
+            String tipo = tabelaSimbolos.get(op);
+            String tipo2 = tabelaSimbolos.get(op2);
+            Boolean error = false;
+            if(Objects.equals(tipo, "string")){
+                if(Objects.equals(tipo2, "Bool")){
+                    error = true;
+                }
 
-        if(Objects.equals(tipo, "string")){
-            if(Objects.equals(tipo2, "Bool")){
+                else if(Objects.equals(tipo2, "int")){
+                    error = true;
+                }
+
+                else if(Objects.equals(tipo2, "float")){
+                    error = true;
+                }
+            }
+
+            else if(Objects.equals(tipo, "Bool") && Objects.equals(tipo2, "string")){
+                error = true;
+            }
+            else if(Objects.equals(tipo, "int") && Objects.equals(tipo2, "string")){
                 error = true;
             }
 
-            else if(Objects.equals(tipo2, "int")){
+            else if(Objects.equals(tipo, "float") && Objects.equals(tipo2, "string")){
                 error = true;
             }
 
-            else if(Objects.equals(tipo2, "float")){
-                error = true;
-            }
+
+            if(error)
+                errosSemanticos.add("No match for operator " + operando +
+                        " (operand types are " + tipo + " and " + tipo2 + ")");
+
         }
-
-        else if(Objects.equals(tipo, "Bool") && Objects.equals(tipo2, "string")){
-            error = true;
-        }
-        else if(Objects.equals(tipo, "int") && Objects.equals(tipo2, "string")){
-            error = true;
-        }
-
-        else if(Objects.equals(tipo, "float") && Objects.equals(tipo2, "string")){
-            error = true;
-        }
-
-
-        if(error)
-            errosSemanticos.add("No match for operator " + operando +
-                    " (operand types are " + tipo + " and " + tipo2 + ")");
-
     }
 
     @Override

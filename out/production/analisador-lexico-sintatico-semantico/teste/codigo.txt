@@ -3,6 +3,7 @@ int var1
 float var2
 string var3
 Bool var4
+string var5
 :ALGORITMO
 ATRIBUIR 2 A var4
 ATRIBUIR 1,5 A var2
@@ -11,3 +12,5 @@ ATRIBUIR "isso é uma string" A var3
 ATRIBUIR var1>var2 A var4
 ATRIBUIR var4+var3 A var3
 ATRIBUIR var2<var3 A var2
+ATRIBUIR var3+var5 A var5
+ATRIBUIR var2+var2-var3 A var2
