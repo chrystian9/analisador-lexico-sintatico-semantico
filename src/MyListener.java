@@ -121,11 +121,8 @@ public class MyListener extends AlgumaBaseListener {
 
     @Override
     public void enterNOperacao(AlgumaParser.NOperacaoContext ctx) {
-        System.out.println("Operacao! ");
         String operando = ctx.OPERADOR().getText();
         String op = ctx.operando().get(0).getText();
-        System.out.print(op + " ");
-        System.out.println(ctx.operando().size());
         if(ctx.operando().size() == 2){
             String op2 = ctx.operando().get(1).getText();
             String tipo = tabelaSimbolos.get(op);
