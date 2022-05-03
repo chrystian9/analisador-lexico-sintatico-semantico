@@ -9,21 +9,11 @@ import java.util.*;
 
 public class MyListener extends AlgumaBaseListener {
 
-    private List<String> errosLexicos = new ArrayList<>();
-    private List<String> errosSintaticos = new ArrayList<>();
     private List<String> errosSemanticos = new ArrayList<>();
     private Map<String, String> tabelaSimbolos = new HashMap<String, String>();
 
     public Map<String, String> getTabelaSimbolos() {
         return tabelaSimbolos;
-    }
-
-    public List<String> getErrosLexicos() {
-        return errosLexicos;
-    }
-
-    public List<String> getErrosSintaticos() {
-        return errosSintaticos;
     }
 
     public List<String> getErrosSemanticos() {
